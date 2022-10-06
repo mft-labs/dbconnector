@@ -19,6 +19,9 @@ func InitDb(url string) *sql.DB {
 	if err != nil {
 		return nil
 	}
+	con.SetMaxOpenConns(30)
+	con.SetMaxIdleConns(15)
+	con.SetConnMaxLifetime(60 * time.Second)
 	return con
 }
 
